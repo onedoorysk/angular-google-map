@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="map">
+    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+      <agm-marker *ngFor="let marker of markerList" [latitude]="marker.lat" [longitude]="marker.lng">
+        <agm-info-window [disableAutoPan]="true">
+          <table>
+            <tr>
+              <td>名前:</td>
+              <td><input type="text" id="name"/></td>
+            </tr>
+            <tr>
+              <td>住所:</td>
+              <td><input type="text" id="address"/></td>
+            </tr>
+            <tr>
+              <td>評価:</td>
+              <td>
+                <select id="type">
+                  <option value="" selected></option>
+                  <option value="1">とても良い</option>
+                  <option value="2">良い</option>
+                  <option value="3">普通</option>
+                  <option value="4">悪い</option>
+                  <option value="5">とても悪い</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><input type="button" value="更新" (click)="saveData()"/></td>
+            </tr>
+          </table>
+        </agm-info-window>
+      </agm-marker>
+    </agm-map>
+  </div>
+  <div class="address">
+    <ul class="address-list">
+      <li *ngFor="let address of addressList"  class="address-list-elm" (click)="clickAddress(address.id)">
+        <div>{{ address.name }}</div>
+        <div>{{ address.address }}</div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="register">
+  <div>
+    <label>名前:</label>
+    <input type="text" [(ngModel)]="name" >
+  </div>
+  <div>
+    <label>住所:</label>
+    <input type="text" [(ngModel)]="address" >
+  </div>
+  <button type="button" (click)="register()">登録</button>
+</div>
